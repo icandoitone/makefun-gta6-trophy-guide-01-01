@@ -1,0 +1,287 @@
+/* Leonida Trophy Atlas — a dusk palette of its own: deep violet night,
+   a pink-to-amber sunset band, lagoon teal for earned things. System fonts
+   only, so the app stays fully offline. Motion tokens follow the
+   transitions.dev scale in spirit: short durations, one smooth-out ease,
+   and a bounce reserved for earned moments. */
+
+:root {
+  --bg: #150a24;
+  --bg-soft: #1c0f33;
+  --surface: #221239;
+  --surface-2: #2c1849;
+  --line: #3d2560;
+  --ink: #f6efe3;
+  --muted: #c9b8e0;
+  --faint: #9787b8;
+  --accent: #ff5d73;
+  --accent-2: #ffb347;
+  --teal: #2fd6c3;
+  --gold: #ffd76a;
+  --silver: #cfd6e4;
+  --bronze: #e09a6a;
+  --platinum: #dff1ff;
+  --danger: #ff7a6b;
+  --radius: 14px;
+  --dur-quick: 150ms;
+  --dur-fast: 250ms;
+  --dur-med: 350ms;
+  --dur-slow: 500ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1100px 420px at 85% -80px, rgba(255, 93, 115, 0.28), transparent 60%),
+    radial-gradient(900px 380px at 8% -60px, rgba(255, 179, 71, 0.16), transparent 55%),
+    var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; margin: 0.1em 0 0.25em; }
+h2 { font-size: 1.6rem; font-weight: 800; margin: 0 0 0.5em; }
+h3 { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.35em; }
+p { margin: 0 0 0.8em; }
+a { color: var(--accent-2); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Hero: the one bold moment. A sunset band above the title, then the
+   progress ring — the number that matters most. */
+.hero { border-bottom: 1px solid var(--line); }
+.hero::before {
+  content: ""; display: block; height: 6px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2) 55%, var(--teal));
+}
+.hero-inner {
+  max-width: 1080px; margin: 0 auto; padding: 2.6rem 1.25rem 2.2rem;
+  animation: hero-in var(--dur-slow) var(--ease-out) both;
+}
+.hero-eyebrow { color: var(--accent-2); font-weight: 700; margin-bottom: 0.2em; }
+.hero-sub { color: var(--muted); font-size: 1.12rem; max-width: 34rem; }
+
+.progress { display: flex; gap: 1.4rem; align-items: center; margin-top: 1.6rem; flex-wrap: wrap; }
+.progress-ring {
+  --pct: 0;
+  width: 118px; height: 118px; border-radius: 50%; flex: none;
+  display: grid; place-items: center;
+  background: conic-gradient(var(--accent) calc(var(--pct) * 1%), rgba(255, 255, 255, 0.12) 0);
+  transition: background var(--dur-med) var(--ease-out);
+}
+.progress-ring::before {
+  content: ""; position: absolute; width: 96px; height: 96px; border-radius: 50%;
+  background: var(--bg-soft);
+}
+.progress-count { position: relative; font-size: 1.05rem; color: var(--muted); }
+.progress-count strong { font-size: 1.9rem; color: var(--ink); font-weight: 800; }
+.progress-text { min-width: 240px; flex: 1; }
+.progress-line { font-weight: 600; margin-bottom: 0.5em; }
+.progress-bar {
+  height: 10px; border-radius: 99px; background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%; border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width var(--dur-med) var(--ease-out);
+}
+.progress-note { color: var(--muted); font-size: 0.92rem; margin: 0.6em 0 0; }
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+
+/* Roadmap: three quiet steps, one warning line. */
+.roadmap { padding: 2.2rem 0 0.6rem; }
+.roadmap-lede { color: var(--muted); max-width: 44rem; }
+.roadmap-steps {
+  list-style: none; margin: 1.4rem 0; padding: 0;
+  display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr);
+}
+.roadmap-steps li {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.1rem 1.15rem;
+}
+.roadmap-steps p { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.6em; }
+.roadmap-time { color: var(--accent-2); font-weight: 700; margin: 0; }
+.roadmap-warn {
+  background: rgba(255, 179, 71, 0.1); border: 1px solid rgba(255, 179, 71, 0.45);
+  border-radius: var(--radius); padding: 0.9rem 1.1rem; color: var(--muted);
+}
+.roadmap-warn strong { color: var(--ink); }
+
+/* Controls: search, spoiler toggle, sliding filter tabs, tools. */
+.controls {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  padding: 1rem 0 0.8rem; margin-top: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.controls-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.search { flex: 1; min-width: 220px; }
+.search input {
+  width: 100%; padding: 0.65rem 0.9rem; border-radius: 99px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  font: inherit;
+}
+.search input::placeholder { color: var(--faint); }
+
+.spoiler-toggle { display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; font-weight: 600; }
+.spoiler-toggle input { position: absolute; opacity: 0; }
+.toggle-track {
+  width: 46px; height: 26px; border-radius: 99px; flex: none;
+  background: rgba(255, 255, 255, 0.16); position: relative;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.toggle-thumb {
+  position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+  border-radius: 50%; background: var(--ink);
+  transition: transform var(--dur-fast) var(--ease-bounce);
+}
+.spoiler-toggle input:checked + .toggle-track { background: var(--accent); }
+.spoiler-toggle input:checked + .toggle-track .toggle-thumb { transform: translateX(20px); }
+.spoiler-toggle input:focus-visible + .toggle-track { outline: 3px solid var(--accent-2); outline-offset: 2px; }
+
+.tabs { position: relative; display: flex; gap: 0.25rem; margin-top: 0.9rem; flex-wrap: wrap; }
+.tab {
+  border: 0; background: transparent; padding: 0.5rem 0.8rem;
+  border-radius: 99px; cursor: pointer; color: var(--muted); font-weight: 600;
+  position: relative; z-index: 1; transition: color var(--dur-quick) var(--ease-out);
+}
+.tab:hover { color: var(--ink); }
+.tab.is-active { color: #1a0b26; }
+.tab-count { font-weight: 700; opacity: 0.75; margin-left: 0.15em; }
+.tab-pill {
+  position: absolute; top: 0; left: 0; height: 100%; border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: transform var(--dur-fast) var(--ease-out), width var(--dur-fast) var(--ease-out);
+  z-index: 0;
+}
+
+.controls-row--tools { justify-content: space-between; margin-top: 0.8rem; }
+.list-meta { color: var(--muted); margin: 0; font-size: 0.95rem; }
+.tools { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tools button {
+  padding: 0.45rem 0.85rem; border-radius: 99px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); font-weight: 600;
+  transition: border-color var(--dur-quick) var(--ease-out), transform var(--dur-quick) var(--ease-out);
+}
+.tools button:hover { border-color: var(--accent-2); transform: translateY(-1px); }
+.tools button:active { transform: translateY(0); }
+
+/* Trophy list: cards that lift on hover, a drawn check when earned. */
+.list { display: grid; gap: 0.8rem; margin-top: 1.2rem; grid-template-columns: 1fr 1fr; }
+.trophy {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 0.95rem 1rem;
+  transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.trophy:hover { transform: translateY(-2px); border-color: var(--accent-2); box-shadow: var(--shadow); }
+.trophy.is-earned { border-color: rgba(47, 214, 195, 0.55); }
+.trophy-head { display: flex; gap: 0.8rem; align-items: flex-start; }
+.check {
+  flex: none; width: 30px; height: 30px; margin-top: 2px;
+  border: 2px solid var(--faint); border-radius: 8px; background: transparent;
+  cursor: pointer; position: relative; padding: 0;
+  transition: border-color var(--dur-quick) var(--ease-out), background var(--dur-quick) var(--ease-out);
+}
+.check::after {
+  content: ""; position: absolute; left: 8px; top: 3px; width: 7px; height: 13px;
+  border-right: 3px solid #0d1526; border-bottom: 3px solid #0d1526;
+  transform: rotate(45deg) scale(0); transform-origin: center;
+  transition: transform var(--dur-fast) var(--ease-bounce);
+}
+.check[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); }
+.check[aria-pressed="true"]::after { transform: rotate(45deg) scale(1); }
+.trophy-title { flex: 1; min-width: 0; }
+.trophy-name { font-weight: 800; font-size: 1.02rem; margin: 0 0 0.15em; }
+.trophy-desc { color: var(--muted); font-size: 0.93rem; margin: 0; }
+.trophy-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.55rem; }
+.pill {
+  font-size: 0.78rem; font-weight: 700; padding: 0.12rem 0.55rem;
+  border-radius: 99px; border: 1px solid var(--line); color: var(--muted);
+}
+.pill--platinum { color: var(--platinum); border-color: var(--platinum); }
+.pill--gold { color: var(--gold); border-color: var(--gold); }
+.pill--silver { color: var(--silver); border-color: var(--silver); }
+.pill--bronze { color: var(--bronze); border-color: var(--bronze); }
+.pill--missable { color: var(--danger); border-color: var(--danger); }
+.pill--hidden { color: var(--faint); }
+.trophy-detail-btn {
+  margin-top: 0.7rem; padding: 0; border: 0; background: none; cursor: pointer;
+  color: var(--accent-2); font-weight: 700; display: inline-flex; gap: 0.35rem; align-items: center;
+}
+.trophy-detail-btn .chev { display: inline-block; transition: transform var(--dur-fast) var(--ease-out); }
+.trophy.is-open .trophy-detail-btn .chev { transform: scaleY(-1); }
+.trophy-detail {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-med) var(--ease-out);
+}
+.trophy.is-open .trophy-detail { grid-template-rows: 1fr; }
+.trophy-detail-inner { overflow: hidden; }
+.trophy-detail-body { padding-top: 0.7rem; border-top: 1px dashed var(--line); margin-top: 0.7rem; }
+.trophy-detail-body h4 { margin: 0.9em 0 0.3em; font-size: 0.9rem; color: var(--muted); font-weight: 700; }
+.trophy-detail-body h4:first-child { margin-top: 0; }
+.trophy-detail-body p { color: var(--ink); font-size: 0.95rem; }
+.trophy-detail-body ul { margin: 0.2em 0 0.6em; padding-left: 1.1em; color: var(--muted); font-size: 0.93rem; }
+.trophy-detail-body a { overflow-wrap: anywhere; }
+.spoiler-hidden { color: var(--faint); font-style: italic; }
+
+.empty { grid-column: 1 / -1; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); padding: 1.4rem; text-align: center; }
+.loading { grid-column: 1 / -1; color: var(--muted); }
+
+.about { margin-top: 2.4rem; border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.about p { color: var(--muted); max-width: 46rem; }
+
+footer { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem 2.5rem; color: var(--faint); font-size: 0.85rem; }
+
+/* Toast: rises from below, slower in than out. */
+.toast {
+  position: fixed; left: 50%; bottom: 1.4rem; z-index: 40;
+  transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
+  background: var(--ink); color: #1a0b26; font-weight: 700;
+  padding: 0.7rem 1.1rem; border-radius: 99px; box-shadow: var(--shadow);
+  transition: opacity var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
+  max-width: min(92vw, 520px); text-align: center;
+}
+.toast.is-shown { opacity: 1; transform: translate(-50%, 0); transition-duration: var(--dur-fast); }
+
+@media (max-width: 760px) {
+  .list { grid-template-columns: 1fr; }
+  .roadmap-steps { grid-template-columns: 1fr; }
+  .progress-ring { width: 96px; height: 96px; }
+  .progress-ring::before { width: 78px; height: 78px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* Compact tracker view (?view=list): hide the intro sections so the
+   checklist starts at the top of the page. Handy for a focused tracker
+   session — and for framing a screenshot of the list itself. */
+body.view-list .hero,
+body.view-list .roadmap,
+body.view-list .about {
+  display: none;
+}

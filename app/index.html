@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Trophy Atlas — GTA VI Trophy Guide &amp; Tracker</title>
+<meta name="description" content="An offline guide and tracker for all 55 PlayStation 5 trophies of Grand Theft Auto VI.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Grand Theft Auto VI · PlayStation 5</p>
+    <h1>Leonida Trophy Atlas</h1>
+    <p class="hero-sub">Every one of the 55 trophies, with a guide in plain words, the sources behind it, and a checklist that keeps your progress on this device.</p>
+    <div class="progress" id="progress" aria-live="polite">
+      <div class="progress-ring" id="progressRing" role="img" aria-label="Trophies earned">
+        <span class="progress-count"><strong id="earnedCount">0</strong><span class="progress-total">/ 55</span></span>
+      </div>
+      <div class="progress-text">
+        <p class="progress-line"><span id="earnedPoints">0</span> of 1,350 points · <span id="earnedPct">0%</span> of the list</p>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <p class="progress-note" id="progressNote">Tick a trophy when you earn it. Your checklist is saved in this browser.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="roadmap" aria-labelledby="roadmap-title">
+    <h2 id="roadmap-title">The road to the platinum</h2>
+    <p class="roadmap-lede">PowerPyx rates the platinum 4 out of 10 and about 200 hours: one playthrough, no online trophies, no difficulty settings. The work falls into three steps.</p>
+    <ol class="roadmap-steps">
+      <li>
+        <h3>Step 1 · Play the story</h3>
+        <p>Five chapters, about 60 to 80 hours. Take the optional missions as they appear, scan vehicles and study animals on the way. Do Lucia&rsquo;s balcony meditation in Chapter 1 — it may be the one missable spot.</p>
+        <p class="roadmap-time">60–80 hours</p>
+      </li>
+      <li>
+        <h3>Step 2 · The 100% checklist</h3>
+        <p>After the credits, open Progress, Stats, 100% Completion. It asks for about 60% of true completion: 200 of 277 vehicles, 100 of 255 animals, 50 of 66 weapons, 70 of 80 challenges.</p>
+        <p class="roadmap-time">About 100 hours</p>
+      </li>
+      <li>
+        <h3>Step 3 · Strangers &amp; cleanup</h3>
+        <p>Finish the 8 Strangers &amp; Freaks strands and the side-character finales, then sweep up what is left. Nothing here is part of the 100% checklist, so it needs its own pass.</p>
+        <p class="roadmap-time">About 10 hours</p>
+      </li>
+    </ol>
+    <p class="roadmap-warn"><strong>Three things before you start.</strong> There is no mission replay and no New Game Plus, so keep a manual save at the start of every chapter and one before the final mission. Cheats disable trophies and saving, so keep trophy runs cheat-free. One trophy, Positive Mental Attitude, may be missable in Chapter 1.</p>
+  </section>
+
+  <section class="controls" aria-label="Trophy controls">
+    <div class="controls-row">
+      <label class="search">
+        <span class="visually-hidden">Search trophies</span>
+        <input type="search" id="search" placeholder="Search a trophy or its guide…" autocomplete="off">
+      </label>
+      <label class="spoiler-toggle">
+        <input type="checkbox" id="spoilerToggle">
+        <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+        <span>Hide story spoilers</span>
+      </label>
+    </div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Filter by kind">
+      <button type="button" class="tab is-active" role="tab" aria-selected="true" data-kind="all">All <span class="tab-count" data-count="all"></span></button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-kind="story">Story <span class="tab-count" data-count="story"></span></button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-kind="missable">Missable <span class="tab-count" data-count="missable"></span></button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-kind="collectibles">Collectibles <span class="tab-count" data-count="collectibles"></span></button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-kind="activities">Activities <span class="tab-count" data-count="activities"></span></button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-kind="online">Online <span class="tab-count" data-count="online"></span></button>
+      <span class="tab-pill" id="tabPill" aria-hidden="true"></span>
+    </div>
+    <div class="controls-row controls-row--tools">
+      <p class="list-meta" id="listMeta"></p>
+      <div class="tools">
+        <button type="button" id="exportBtn">Export progress</button>
+        <button type="button" id="importBtn">Import progress</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+        <button type="button" id="resetBtn">Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="list" id="list" aria-live="polite">
+    <p class="loading">Loading the trophy list…</p>
+  </section>
+
+  <section class="about" aria-labelledby="about-title">
+    <h2 id="about-title">About this guide</h2>
+    <p>Every trophy shows its official name, description and grade exactly as PlayStation publishes them. The guides are written in our own words for this entry, and each one names its sources — a guide with no source gets no credit for its specifics, so every claim you can act on carries one. Where no guide has pinned down an unlock yet at launch, the guide says so plainly instead of guessing.</p>
+    <p>The list itself comes from the public trophy trackers: Exophase, PSNProfiles and TrueTrophies, as published on 18 November 2026, cross-checked against PowerPyx, GTABase and GTA Zone. The game has no online trophies, so the Online filter is empty on purpose.</p>
+    <p>This app is fully offline. It loads nothing from the network, it stores your checklist only in this browser, and it shows no Rockstar logo or official artwork.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Leonida Trophy Atlas — an unofficial fan guide. Grand Theft Auto and GTA are trademarks of Rockstar Games. Not affiliated with Rockstar Games, Sony or PlayStation.</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
